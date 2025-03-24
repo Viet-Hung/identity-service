@@ -1,10 +1,16 @@
 package com.dvhung.identity_service.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class UserCreationRequest {
 
+    @NotBlank(message = "Username cannot be empty!")
     private String username;
+
+    @Size(min = 8, message = "Password must be at least 8 characters.") // Validate
     private String password;
     private String firstname;
     private String lastname;

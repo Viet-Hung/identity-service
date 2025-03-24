@@ -1,7 +1,5 @@
 package com.dvhung.identity_service.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +15,9 @@ import com.dvhung.identity_service.dto.request.UserUpdateRequest;
 import com.dvhung.identity_service.entity.User;
 import com.dvhung.identity_service.service.UserService;
 
+import java.util.List;
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -27,7 +28,7 @@ public class UserController {
     // đã khai báo requestmapping ở trên nên ko cần khai báo nữa
     // @PostMapping("/users")
     @PostMapping
-    User createUser(@RequestBody UserCreationRequest request) {
+    User createUser(@RequestBody @Valid UserCreationRequest request) { // need validation object by the rule.
         return userService.createUser(request);
     }
 

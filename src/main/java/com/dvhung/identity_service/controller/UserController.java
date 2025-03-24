@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dvhung.identity_service.dto.request.ApiResponse;
 import com.dvhung.identity_service.dto.request.UserCreationRequest;
 import com.dvhung.identity_service.dto.request.UserUpdateRequest;
 import com.dvhung.identity_service.entity.User;
@@ -28,8 +29,13 @@ public class UserController {
     // đã khai báo requestmapping ở trên nên ko cần khai báo nữa
     // @PostMapping("/users")
     @PostMapping
-    User createUser(@RequestBody @Valid UserCreationRequest request) { // need validation object by the rule.
-        return userService.createUser(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
+        // need validation object by the rule.
+
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(userService.createUser(request));
+
+        return apiResponse;
     }
 
     @GetMapping

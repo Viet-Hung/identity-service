@@ -7,10 +7,10 @@ import java.time.LocalDate;
 
 public class UserCreationRequest {
 
-    @NotBlank(message = "Username cannot be empty!")
+    @NotBlank(message = "INVALID_USERNAME")
     private String username;
 
-    @Size(min = 8, message = "Password must be at least 8 characters.") // Validate
+    @Size(min = 8, message = "INVALID_PASSWORD") // Validate
     private String password;
     private String firstname;
     private String lastname;
